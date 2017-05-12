@@ -15,7 +15,7 @@
    Friend Shared staffAdapter As New System.Data.OleDb.OleDbDataAdapter
    Friend Shared staffCommand As New System.Data.OleDb.OleDbCommand
    Friend Shared staffBuilder As System.Data.OleDb.OleDbCommandBuilder
-   Friend Shared staffTable As New System.Data.DataTable("staff")
+   Friend Shared staffTable As New System.Data.DataTable("UWP_Staff")
 
    ' variable for booking
    ' . . .
@@ -24,12 +24,12 @@
    Friend Shared experienceAdapter As New System.Data.OleDb.OleDbDataAdapter
    Friend Shared experienceCommand As New System.Data.OleDb.OleDbCommand
    Friend Shared experienceBuilder As System.Data.OleDb.OleDbCommandBuilder
-   Friend Shared experienceTable As New System.Data.DataTable("experience")
+   Friend Shared experienceTable As New System.Data.DataTable("UWP_WorkExperience")
 
    Friend Shared qualificationsAdapter As New System.Data.OleDb.OleDbDataAdapter
    Friend Shared qualificationsCommand As New System.Data.OleDb.OleDbCommand
    Friend Shared qualificationsBuilder As System.Data.OleDb.OleDbCommandBuilder
-   Friend Shared qualificationsTable As New System.Data.DataTable("qualifications")
+   Friend Shared qualificationsTable As New System.Data.DataTable("UWP_Qualifications")
 
    Public Shared Sub LogInAtRunTime()
       UserName = "seelyv"

@@ -32,12 +32,6 @@
       txtHours.DataBindings.Add("Text", staffBindingSource, "hrsPerWk")
       txtTempPerm.DataBindings.Add("Text", staffBindingSource, "posPermTemp")
       txtTypePay.DataBindings.Add("Text", staffBindingSource, "typeOfPay")
-      'change query for qual and exp
-      'should query where txtStaffNo = q or exp . staffno
-      Dim tempID = txtStaffNo.Text
-
-      Oracle.qualificationsCommand.CommandText = "select * from UWP_Qualifications where staffNo = '" & tempID & "'"
-      Oracle.experienceCommand.CommandText = "select * from UWP_WorkExperience where staffNo = '" & tempID & "'"
 
       txtQualDate.DataBindings.Add("Text", qualificationsBindingSource, "qualDate")
       txtType.DataBindings.Add("Text", qualificationsBindingSource, "type")
@@ -48,6 +42,8 @@
       txtStart.DataBindings.Add("Text", experienceBindingSource, "startDate")
       txtFinish.DataBindings.Add("Text", experienceBindingSource, "finishDate")
 
+      experienceDataView.RowFilter = "StaffNo = '" & txtStaffNo.Text & "'"
+      qualificationsDataView.RowFilter = "StaffNo = '" & txtStaffNo.Text & "'"
       numEmp.Text = (staffBindingSource.Position + 1) & "/" & staffBindingSource.Count
       numQual.Text = (qualificationsBindingSource.Position + 1) & "/" & qualificationsBindingSource.Count
       numExp.Text = (experienceBindingSource.Position + 1) & "/" & experienceBindingSource.Count
@@ -56,21 +52,37 @@
    Private Sub empFirst_Click(sender As Object, e As EventArgs) Handles empFirst.Click
       staffBindingSource.MoveFirst()
       numEmp.Text = (staffBindingSource.Position + 1) & "/" & staffBindingSource.Count
+      experienceDataView.RowFilter = "StaffNo = '" & txtStaffNo.Text & "'"
+      qualificationsDataView.RowFilter = "StaffNo = '" & txtStaffNo.Text & "'"
+      numQual.Text = (qualificationsBindingSource.Position + 1) & "/" & qualificationsBindingSource.Count
+      numExp.Text = (experienceBindingSource.Position + 1) & "/" & experienceBindingSource.Count
    End Sub
 
    Private Sub empPre_Click(sender As Object, e As EventArgs) Handles empPre.Click
       staffBindingSource.MovePrevious()
       numEmp.Text = (staffBindingSource.Position + 1) & "/" & staffBindingSource.Count
+      experienceDataView.RowFilter = "StaffNo = '" & txtStaffNo.Text & "'"
+      qualificationsDataView.RowFilter = "StaffNo = '" & txtStaffNo.Text & "'"
+      numQual.Text = (qualificationsBindingSource.Position + 1) & "/" & qualificationsBindingSource.Count
+      numExp.Text = (experienceBindingSource.Position + 1) & "/" & experienceBindingSource.Count
    End Sub
 
    Private Sub empNxt_Click(sender As Object, e As EventArgs) Handles empNxt.Click
       staffBindingSource.MoveNext()
       numEmp.Text = (staffBindingSource.Position + 1) & "/" & staffBindingSource.Count
+      experienceDataView.RowFilter = "StaffNo = '" & txtStaffNo.Text & "'"
+      qualificationsDataView.RowFilter = "StaffNo = '" & txtStaffNo.Text & "'"
+      numQual.Text = (qualificationsBindingSource.Position + 1) & "/" & qualificationsBindingSource.Count
+      numExp.Text = (experienceBindingSource.Position + 1) & "/" & experienceBindingSource.Count
    End Sub
 
    Private Sub empLast_Click(sender As Object, e As EventArgs) Handles empLast.Click
       staffBindingSource.MoveLast()
       numEmp.Text = (staffBindingSource.Position + 1) & "/" & staffBindingSource.Count
+      experienceDataView.RowFilter = "StaffNo = '" & txtStaffNo.Text & "'"
+      qualificationsDataView.RowFilter = "StaffNo = '" & txtStaffNo.Text & "'"
+      numQual.Text = (qualificationsBindingSource.Position + 1) & "/" & qualificationsBindingSource.Count
+      numExp.Text = (experienceBindingSource.Position + 1) & "/" & experienceBindingSource.Count
    End Sub
 
    Private Sub qualFirst_Click(sender As Object, e As EventArgs) Handles qualFirst.Click
