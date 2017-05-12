@@ -128,4 +128,111 @@
    Private Sub btnExit_Click(sender As Object, e As EventArgs) Handles btnExit.Click
       Application.Exit()
    End Sub
+
+   Private Sub empNew_Click(sender As Object, e As EventArgs) Handles empNew.Click
+      Dim r As DataRow
+
+      r = Oracle.staffTable.NewRow
+      Oracle.staffTable.Rows.Add(r)
+      ' The new row is added at the end
+      staffBindingSource.MoveLast()
+
+      txtPosition.Text = (staffBindingSource.Position + 1) & "/" & staffBindingSource.Count
+   End Sub
+
+   Private Sub empSave_Click(sender As Object, e As EventArgs) Handles empSave.Click
+      Try
+         staffBindingSource.EndEdit()
+         Oracle.staffAdapter.Update(Oracle.staffTable)
+      Catch ex As Exception
+         MessageBox.Show(ex.Message)
+      End Try
+   End Sub
+
+   Private Sub empDelete_Click(sender As Object, e As EventArgs) Handles empDelete.Click
+      Try
+         staffBindingSource.RemoveCurrent()
+         txtPosition.Text = (staffBindingSource.Position + 1) & "/" & staffBindingSource.Count
+      Catch ex As Exception
+         MessageBox.Show(ex.Message)
+      End Try
+   End Sub
+
+   Private Sub qualNew_Click(sender As Object, e As EventArgs) Handles qualNew.Click
+      Dim r As DataRow
+
+      r = Oracle.qualificationsTable.NewRow
+      Oracle.qualificationsTable.Rows.Add(r)
+      ' The new row is added at the end
+      qualificationsBindingSource.MoveLast()
+
+      txtPosition.Text = (qualificationsBindingSource.Position + 1) & "/" & qualificationsBindingSource.Count
+   End Sub
+
+   Private Sub qualSave_Click(sender As Object, e As EventArgs) Handles qualSave.Click
+      Try
+         qualificationsBindingSource.EndEdit()
+         Oracle.qualificationsAdapter.Update(Oracle.qualificationsTable)
+      Catch ex As Exception
+         MessageBox.Show(ex.Message)
+      End Try
+   End Sub
+
+   Private Sub qualDelete_Click(sender As Object, e As EventArgs) Handles qualDelete.Click
+      Try
+         qualificationsBindingSource.RemoveCurrent()
+         txtPosition.Text = (qualificationsBindingSource.Position + 1) & "/" & qualificationsBindingSource.Count
+      Catch ex As Exception
+         MessageBox.Show(ex.Message)
+      End Try
+   End Sub
+
+   Private Sub expNew_Click(sender As Object, e As EventArgs) Handles expNew.Click
+      Dim r As DataRow
+
+      r = Oracle.experienceTable.NewRow
+      Oracle.experienceTable.Rows.Add(r)
+      ' The new row is added at the end
+      experienceBindingSource.MoveLast()
+
+      txtPosition.Text = (experienceBindingSource.Position + 1) & "/" & experienceBindingSource.Count
+   End Sub
+
+   Private Sub expSave_Click(sender As Object, e As EventArgs) Handles expSave.Click
+      Try
+         experienceBindingSource.EndEdit()
+         Oracle.experienceAdapter.Update(Oracle.experienceTable)
+      Catch ex As Exception
+         MessageBox.Show(ex.Message)
+      End Try
+   End Sub
+
+   Private Sub expDelete_Click(sender As Object, e As EventArgs) Handles expDelete.Click
+      Try
+         experienceBindingSource.RemoveCurrent()
+         txtPosition.Text = (experienceBindingSource.Position + 1) & "/" & experienceBindingSource.Count
+      Catch ex As Exception
+         MessageBox.Show(ex.Message)
+      End Try
+   End Sub
+
+   Private Sub btnAll_Click(sender As Object, e As EventArgs) Handles btnAll.Click
+      Oracle.staffCommand.CommandText = "Select * from UWP_Staff"
+
+      Oracle.staffTable.Clear()
+      Oracle.staffAdapter.Fill(Oracle.staffTable)
+   End Sub
+
+   Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
+      Dim searchPhrase = "Select * from UWP_Staff join UWP_WorkExperience on UWP_Staff.staffNo = UWP_WorkExperience.staffNo join UWP_Qualifications on UWP_Staff.staffNo = UWP_Qualifications.staffNo  where " & cboField.Text & " = '" & txtValue.Text & "'"
+      Oracle.staffCommand.CommandText = searchPhrase
+      Oracle.experienceCommand.CommandText = searchPhrase
+      Oracle.qualificationsCommand.CommandText = searchPhrase
+      Oracle.staffTable.Clear()
+      Oracle.staffAdapter.Fill(Oracle.staffTable)
+      Oracle.qualificationsTable.Clear()
+      Oracle.qualificationsAdapter.Fill(Oracle.qualificationsTable)
+      Oracle.experienceTable.Clear()
+      Oracle.experienceAdapter.Fill(Oracle.experienceTable)
+   End Sub
 End Class
