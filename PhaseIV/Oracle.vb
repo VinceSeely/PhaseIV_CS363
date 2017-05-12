@@ -32,9 +32,6 @@
    Friend Shared qualificationsTable As New System.Data.DataTable("UWP_Qualifications")
 
    Public Shared Sub LogInAtRunTime()
-      UserName = "seelyv"
-      Password = "ubZM9cmoUV&^"
-      Server = "eddb"
       myConnection.ConnectionString = "Provider=MSDAORA;user id=" & UserName & ";data source=" & Server &
                                       ";password=" & Password & ";persist security info=False"
 
